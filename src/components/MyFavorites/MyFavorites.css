@@ -1,48 +1,62 @@
 .favorites-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: calc(100vh - 115px);
-    padding: 20px;
-    background-color: #ffdddd;
-    font-family: 'Arial', sans-serif;
-  }
-  .favorite-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 15px 0;
-    border: 1px solid #ddd;
-    border-radius: 10px; /* match border radius with meal items */
-    padding: 10px; /* match padding with meal items */
-    width: 200px; /* match width with meal items */
-    transition: transform 0.3s ease;
-    background-color: #fff;
-  }
-  /* .favorite-item:hover {
-    transform: scale(1.1);
-  } */
-  .favorite-image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 10px; /* match border radius with meal items */
-  }
-  .favorite-name {
-    font-size: 1.2em; /* match font size with meal items */
-    color: #333; /* match color with meal items */
-    margin: 10px 0;
-  }
-  .remove-button {
-    padding: 5px 10px; /* match padding with meal items */
-    background-color: #333; /* match background color with meal items */
-    color: #fff; /* match text color with meal items */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .remove-button:hover {
-    background-color: #666; /* match hover color with meal items */
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Adjusted to start from the top */
+  min-height: auto; /* Removed fixed height to accommodate dynamic content */
+  padding: 20px;
+  background-color: #ffdddd;
+  font-family: 'Arial', sans-serif;
+}
+
+.favorites-container h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.favorites-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%; /* Adjusted to fill the available space */
+}
+
+.favorite-item {
+  width: 200px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+}
+
+.favorite-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px; /* match border radius with meal items */
+}
+
+.favorite-name {
+  font-size: 1.2em; /* match font size with meal items */
+  color: #333; /* match color with meal items */
+  margin: 10px 0;
+}
+
+.remove-button {
+  padding: 5px 10px; /* match padding with meal items */
+  background-color: #333; /* match background color with meal items */
+  color: #fff; /* match text color with meal items */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+  background-color: #666; /* match hover color with meal items */
+}
