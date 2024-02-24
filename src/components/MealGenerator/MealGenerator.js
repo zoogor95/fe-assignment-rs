@@ -1,18 +1,26 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { MealsContext } from '../../context/MealsContext';
 import './MealGenerator.css';
 
 const MealGenerator = () => {
-  const { mealsData, setMealsData, favorites, setFavorites } = useContext(MealsContext);
-
-  // Combine all meals from all categories into one array
-  const meals = Object.values(mealsData).flat();
+  const { favorites, setFavorites } = useContext(MealsContext);
 
   const [randomMeal, setRandomMeal] = useState(null);
 
-  const generateMeal = () => {
-    const randomIndex = Math.floor(Math.random() * meals.length);
-    setRandomMeal(meals[randomIndex]);
+  const generateMeal = async () => {
+    try {
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+      const data = await response.json();
+      const meal = data.meals[0];
+      setRandomMeal({
+        id: meal.idMeal,
+        name: meal.strMeal,
+        img: meal.strMealThumb,
+        isFavorite: false, // Assuming initially the meal is not a favorite
+      });
+    } catch (error) {
+      console.error('Error fetching random meal:', error);
+    }
   };
 
   const toggleFavorite = () => {
@@ -26,25 +34,13 @@ const MealGenerator = () => {
     }
   };
 
-  // Update the isFavorite property of the meals in mealsData when favorites change
-  useEffect(() => {
-    const updatedMealsData = { ...mealsData };
-    for (const category in updatedMealsData) {
-      updatedMealsData[category] = updatedMealsData[category].map((meal) => ({
-        ...meal,
-        isFavorite: favorites.some((favorite) => favorite.id === meal.id),
-      }));
-    }
-    setMealsData(updatedMealsData);
-  }, [favorites]);
-
   return (
     <div className="generator">
       <h1>Random Meal Generator</h1>
       <button className="generate-btn" onClick={generateMeal}>Generate Meal</button>
       {randomMeal && (
         <div className="meal-card">
-          <img src={randomMeal.img} alt={randomMeal.name} className="meal-img" />
+          <img src={randomMeal.img + '/preview'} alt={randomMeal.name} className="meal-img" />
           <h2 className="meal-name">{randomMeal.name}</h2>
           <button className="fav-btn" onClick={toggleFavorite}>
             {randomMeal.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}

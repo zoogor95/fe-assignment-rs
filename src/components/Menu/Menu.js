@@ -1,26 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Menu.css';
 
 const Menu = () => {
-  const categories = [
-    { id: 1, name: 'Breakfast', disabled: false },
-    { id: 2, name: 'Lunch', disabled: false },
-    { id: 3, name: 'Dinner', disabled: false },
-    { id: 4, name: 'Dessert', disabled: true },
-    { id: 5, name: 'Beverages', disabled: true }
-  ];
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://www.themealdb.com/api/json/v1/1/categories.php');
+        const data = await response.json();
+        setCategories(data.categories);
+      } catch (error) {
+        console.error('Error fetching categories:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="menu">
       <h1>Our Menu</h1>
       <ul className="menu-list">
         {categories.map((category, index) => (
           <li key={index} className={"menu-item"} >
-            {category.disabled ? (
-              <span className="menu-button disabled">{category.name}</span>
-            ) : (
-              <Link className="menu-button" to={`/meals/${category.id}`}>{category.name}</Link>
-            )}
+            <Link className="menu-button" to={`/meals/${category.strCategory}`}>{category.strCategory}</Link>
           </li>
         ))}
       </ul>

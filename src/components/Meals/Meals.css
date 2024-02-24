@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: calc(100vh - 115px);
+    justify-content: flex-start; /* Adjusted to start from the top */
+    height: auto; /* Removed fixed height to accommodate dynamic content */
     padding: 20px;
     background-color: #ffdddd;
     font-family: 'Arial', sans-serif;
@@ -20,6 +20,7 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+    width: 100%; /* Adjusted to fill the available space */
 }
 
 .meal-card {

@@ -8,9 +8,9 @@
     background-color: #ffdddd;
     font-family: 'Arial', sans-serif;
 }
+
 .menu h1 {
     font-size: 2.5em;
-    /* color: #6c757d; */
     margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -20,10 +20,13 @@
     list-style: none;
     padding: 0;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap; /* Allow menu items to wrap onto multiple lines */
+    justify-content: center; /* Center items horizontally */
 }
 
 .menu-item {
-    margin: 15px 0;
+    margin: 15px;
     transition: transform 0.3s ease;
 }
 
@@ -51,6 +54,7 @@
     opacity: 0.6;
     transition: none;
 }
+
 .menu-button.disabled:hover {
     background-color: #6c757d;
 }
