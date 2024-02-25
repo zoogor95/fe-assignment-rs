@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import './MyFavorites.css'; // Import your CSS file
+import './MyFavorites.css';
 import { MealsContext } from '../../context/MealsContext';
 
 const MyFavorites = () => {
